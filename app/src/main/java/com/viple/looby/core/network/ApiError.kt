@@ -38,7 +38,7 @@ fun Throwable.toApiError(json: Json = Json { ignoreUnknownKeys = true }): ApiErr
             403 -> ApiError.Forbidden()
             404 -> ApiError.NotFound()
             429 -> ApiError.RateLimited()
-            else -> ApiError.Server(code(), message ?: "Erreur serveur ($code()).")
+            else -> ApiError.Server(code(), message ?: "Erreur serveur (${code()}).")
         }
     }
     is IOException -> ApiError.Network(this)

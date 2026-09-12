@@ -106,6 +106,7 @@ dependencies {
 
     implementation(libs.appauth)
     implementation(libs.signalr)
+    implementation(libs.gson)
     implementation(libs.coil.compose)
     implementation(libs.coil.gif)
 
