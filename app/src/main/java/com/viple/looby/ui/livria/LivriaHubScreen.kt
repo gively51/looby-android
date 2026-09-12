@@ -159,7 +159,7 @@ fun LivriaHubScreen(
 }
 
 @Composable
-fun XpBar(
+fun XpBar(p: LivriaProgress, color: Color) {
     Column {
         LinearProgressIndicator({ (p.levelPercent / 100.0).toFloat().coerceIn(0f, 1f) }, Modifier.fillMaxWidth().height(6.dp), color = color, trackColor = color.copy(alpha = 0.25f), strokeCap = androidx.compose.ui.graphics.StrokeCap.Round)
         Text("${p.xpIntoLevel} / ${p.xpForNextLevel} XP", style = MaterialTheme.typography.labelSmall, color = color.copy(alpha = 0.9f))

@@ -238,6 +238,9 @@ fun OrdersScreen(onBack: () -> Unit, vm: OrdersViewModel = hiltViewModel()) {
                                 HorizontalDivider()
                                 Row { Text("Total", Modifier.weight(1f), fontWeight = FontWeight.Bold); Text("%.2f €".format(o.totalAmount), fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary) }
                                 if (o.status == OrderStatus.PendingPayment) Button(
+                                    onClick = { vm.pay(o.id) },
+                                    modifier = Modifier.align(Alignment.End)
+                                ) { Text("Payer maintenant") }
                             }
                         }
                     }
