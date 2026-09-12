@@ -59,9 +59,10 @@ if (-not (Test-Path $GitExe)) {
 
 # Naviguer vers le répertoire du projet
 Write-Status "Navigation vers $ProjectDir"
-Set-Location $ProjectDir
-if ($LASTEXITCODE -ne 0) {
-    Write-Status "Impossible d'accéder au répertoire" $Color.Error
+try {
+    Set-Location -Path $ProjectDir -ErrorAction Stop
+} catch {
+    Write-Status "Impossible d'accéder au répertoire : $_" $Color.Error
     exit 1
 }
 Write-Status "Répertoire courant : $(Get-Location)" $Color.Success
