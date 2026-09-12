@@ -14,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed as uiComposed
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -112,7 +113,7 @@ fun Modifier.shimmer(): Modifier = composed {
     background(Brush.linearGradient(listOf(base, hi, base), start = Offset(x - 400f, 0f), end = Offset(x, 0f)))
 }
 
-private fun Modifier.composed(factory: @Composable Modifier.() -> Modifier): Modifier = androidx.compose.ui.composed { factory() }
+private fun Modifier.composed(factory: @Composable Modifier.() -> Modifier): Modifier = this.uiComposed { factory() }
 
 @Composable
 fun ShimmerBox(modifier: Modifier, shape: androidx.compose.ui.graphics.Shape = MaterialTheme.shapes.medium) {

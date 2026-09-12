@@ -11,6 +11,7 @@ import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -74,7 +75,7 @@ fun SupportScreen(onBack: () -> Unit, onTicket: (String) -> Unit, onChangelog: (
     Scaffold(
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = { LoobyTopBar("Support & retours", onBack, actions = { IconButton(onChangelog) { Icon(Icons.Rounded.NewReleases, "Nouveautés") } }) },
-        floatingActionButton = { ExtendedFloatingActionButton({ sheet = tab }, icon = { Icon(Icons.Rounded.Add, null) }, text = { Text(when (tab) { 0 -> "Nouveau ticket"; 1 -> "Proposer une idée"; else -> "Signaler un bug" }) }) }
+        floatingActionButton = { ExtendedFloatingActionButton(text = { Text(when (tab) { 0 -> "Nouveau ticket"; 1 -> "Proposer une idée"; else -> "Signaler un bug" }) }, icon = { Icon(Icons.Rounded.Add, null) }, onClick = { sheet = tab }) }
     ) { padding ->
         Column(Modifier.padding(padding)) {
             PrimaryTabRow(tab) {

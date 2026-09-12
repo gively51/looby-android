@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -77,7 +78,7 @@ fun LivriaExchangesScreen(onBack: () -> Unit, onConversation: (String) -> Unit, 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = { LoobyTopBar("Échanges de livres", onBack) },
-        floatingActionButton = { ExtendedFloatingActionButton({ showCreate = true }, icon = { Icon(Icons.Rounded.Add, null) }, text = { Text("Proposer un livre") }, containerColor = LoobyTheme.brand.livria, contentColor = Color.White) }
+        floatingActionButton = { ExtendedFloatingActionButton(text = { Text("Proposer un livre") }, icon = { Icon(Icons.Rounded.Add, null) }, onClick = { showCreate = true }, containerColor = LoobyTheme.brand.livria, contentColor = Color.White) }
     ) { padding ->
         Column(Modifier.padding(padding)) {
             val h = s.hub
