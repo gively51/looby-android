@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Looby</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Accueil</string>
+    <string name="nav_explore">Explorer</string>
+    <string name="nav_sell">Vendre</string>
+    <string name="nav_messages">Messages</string>
+    <string name="nav_livria">Livria</string>
+    <string name="nav_account">Compte</string>
+
+    <!-- Général -->
+    <string name="action_retry">Réessayer</string>
+    <string name="action_back">Retour</string>
+    <string name="action_close">Fermer</string>
+    <string name="action_search">Rechercher</string>
+    <string name="action_sign_in">Se connecter avec Viple ID</string>
+    <string name="action_sign_out">Se déconnecter</string>
+    <string name="action_continue">Continuer</string>
+    <string name="action_publish">Publier</string>
+    <string name="action_save">Enregistrer</string>
+    <string name="action_send">Envoyer</string>
+    <string name="action_delete">Supprimer</string>
+    <string name="action_contact_seller">Contacter</string>
+    <string name="action_share">Partager</string>
+    <string name="action_filters">Filtres</string>
+
+    <string name="state_loading">Chargement…</string>
+    <string name="state_empty">Rien à afficher pour le moment</string>
+    <string name="state_error_generic">Une erreur est survenue. Vérifiez votre connexion.</string>
+    <string name="state_offline">Vous êtes hors ligne</string>
+    <string name="state_signin_required">Connectez‑vous pour accéder à cette fonctionnalité</string>
+
+    <string name="brand_looby">Looby</string>
+    <string name="brand_gively">Gively</string>
+    <string name="brand_livria">Livria</string>
+    <string name="donation_badge">Don</string>
+    <string name="free_label">Gratuit</string>
+
+    <string name="home_greeting_anonymous">Bonjour 👋</string>
+    <string name="home_greeting">Bonjour, %1$s 👋</string>
+    <string name="home_search_placeholder">Que cherchez‑vous ?</string>
+    <string name="home_section_categories">Catégories</string>
+    <string name="home_section_latest">Dernières annonces</string>
+    <string name="home_section_donations">Dons Gively</string>
+    <string name="home_see_all">Tout voir</string>
+
+    <string name="messages_title">Messages</string>
+    <string name="messages_empty">Aucune conversation pour le moment</string>
+    <string name="messages_compose_placeholder">Votre message…</string>
+    <string name="messages_typing">écrit…</string>
+
+    <string name="sell_title">Déposer une annonce</string>
+    <string name="livria_title">Livria</string>
+    <string name="account_title">Mon compte</string>
+    <string name="support_title">Aide &amp; support</string>
+</resources>

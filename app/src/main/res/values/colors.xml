@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="looby_primary">#5B3DF5</color>
+    <color name="looby_on_primary">#FFFFFF</color>
+    <color name="looby_background">#FBFAFF</color>
+    <color name="looby_background_dark">#0F0E17</color>
+    <color name="ic_launcher_background">#5B3DF5</color>
+</resources>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Logo "L" stylisé dans une bulle, utilisé pour le splash et l'icône adaptative -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.16"
+        android:pathData="M54,22 a32,32 0 1,1 0,64 a32,32 0 1,1 0,-64z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,34 h9 v31 h17 v9 h-26z" />
+    <path
+        android:fillColor="#FFD166"
+        android:pathData="M68,36 a5,5 0 1,1 0,10 a5,5 0 1,1 0,-10z" />
+</vector>
