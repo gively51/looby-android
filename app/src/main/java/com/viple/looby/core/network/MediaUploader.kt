@@ -10,7 +10,9 @@ import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.RequestBody
+import okio.BufferedSink
+import okio.source
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
@@ -30,11 +32,34 @@ class MediaUploader @Inject constructor(
             val fileName = "upload_${System.currentTimeMillis()}.$ext"
             val ticket = catalogApi.uploadTicket(section.value, fileName)
 
-            val bytes = resolver.openInputStream(uri)?.use { it.readBytes() } ?: error("Impossible de lire le fichier.")
+            // Photos taken with the phone's camera are commonly 8-20 MB. Reading the
+            // whole file into a ByteArray (resolver.openInputStream(uri).readBytes())
+            // can throw an OutOfMemoryError on lower-end devices and silently aborts
+            // the upload without any photo ever reaching S3. Stream the content://
+            // Uri directly to the presigned PUT instead, with a known Content-Length
+            // (required for the S3 signature to match), so large camera photos no
+            // longer fail to import.
+            val length = resolver.openAssetFileDescriptor(uri, "r")?.use { it.length } ?: -1L
+            if (length <= 0L) error("Impossible de lire le fichier.")
+            val mediaType = ticket.contentType.toMediaType()
+            val requestBody = object : RequestBody() {
+                override fun contentType() = mediaType
+                override fun contentLength() = length
+                override fun writeTo(sink: BufferedSink) {
+                    val input = resolver.openInputStream(uri) ?: error("Impossible de lire le fichier.")
+                    input.use { sink.writeAll(it.source()) }
+                }
+            }
+
+            // The upload URL points at an AWS S3 pre-signed PUT (see
+            // S3MediaStorageService). "x-ms-blob-type" is an Azure Blob Storage-only
+            // header left over from before the migration to S3; S3 doesn't expect it
+            // and some bucket configurations reject unsigned headers with a
+            // SignatureDoesNotMatch error, silently failing the upload (the listing
+            // then publishes without its photo).
             val request = Request.Builder()
                 .url(ticket.uploadUrl)
-                .put(bytes.toRequestBody(ticket.contentType.toMediaType()))
-                .header("x-ms-blob-type", "BlockBlob")
+                .put(requestBody)
                 .header("Content-Type", ticket.contentType)
                 .build()
             plainClient.newCall(request).execute().use { response ->
